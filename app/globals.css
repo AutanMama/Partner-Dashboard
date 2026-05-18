@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: #05070d;
+  color: #e6e9f2;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Background gradient field */
+.bg-app {
+  background:
+    radial-gradient(1100px 600px at 0% -10%, rgba(38, 103, 255, 0.18), transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, rgba(16, 185, 129, 0.12), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(38, 103, 255, 0.1), transparent 60%),
+    #05070d;
+}
+
+/* Glassmorphism card */
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.045) 0%,
+    rgba(255, 255, 255, 0.015) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 24px 60px -28px rgba(0, 0, 0, 0.7);
+}
+
+.glass-hover {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+.glass-hover:hover {
+  transform: translateY(-2px);
+  border-color: rgba(38, 103, 255, 0.35);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+    0 30px 70px -28px rgba(38, 103, 255, 0.35);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+  border-radius: 10px;
+}
+
+/* Subtle dotted grid background */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Active nav indicator */
+.nav-active {
+  background: linear-gradient(
+    135deg,
+    rgba(38, 103, 255, 0.18) 0%,
+    rgba(16, 185, 129, 0.06) 100%
+  );
+  border: 1px solid rgba(38, 103, 255, 0.3);
+  box-shadow: 0 0 30px -12px rgba(38, 103, 255, 0.55);
+}
+
+/* Text gradients */
+.text-gradient-brand {
+  background: linear-gradient(135deg, #ffffff 0%, #83b4ff 50%, #34d399 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hide arrows */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+button,
+a {
+  outline: none;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #4d8bff;
+  outline-offset: 2px;
+  border-radius: 8px;
+}

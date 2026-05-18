@@ -45,7 +45,7 @@ export function TradesTable({
   const display = filtered.slice(0, rows);
 
   return (
-    <Card hoverable={false}>
+    <Card hoverable={false} className="overflow-hidden">
       {!hideHeader ? (
         <CardHeader
           title="Trade Activity"

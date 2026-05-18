@@ -280,7 +280,7 @@ export default function ClicksPage() {
           </div>
         </Card>
 
-        <Card className="col-span-12 xl:col-span-8" hoverable={false}>
+        <Card className="col-span-12 overflow-hidden xl:col-span-8" hoverable={false}>
           <CardHeader
             title="Top Countries"
             subtitle="Geographic distribution of referral clicks"

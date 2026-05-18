@@ -40,11 +40,11 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           ) : null}
         </AnimatePresence>
 
-        <div className="relative flex min-w-0 flex-1 flex-col">
+        <div className="relative flex min-w-0 flex-1 flex-col overflow-x-hidden">
           <Topbar onMenuClick={() => setMobileOpen(true)} />
-          <main className="relative flex-1 px-4 py-6 sm:px-6 lg:px-8">
+          <main className="relative w-full flex-1 overflow-x-hidden px-4 py-6 sm:px-6 lg:px-8">
             <div className="pointer-events-none absolute inset-0 -z-10 dot-grid opacity-30" />
-            <div className="mx-auto flex max-w-[1480px] flex-col gap-6">
+            <div className="mx-auto flex w-full max-w-[1480px] min-w-0 flex-col gap-6">
               {children}
             </div>
           </main>

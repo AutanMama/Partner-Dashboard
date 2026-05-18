@@ -194,7 +194,7 @@ export default function CommissionsPage() {
         </Card>
       </section>
 
-      <Card hoverable={false}>
+      <Card hoverable={false} className="overflow-hidden">
         <CardHeader
           title="Recent Payouts"
           subtitle="Last 5 commission transfers"

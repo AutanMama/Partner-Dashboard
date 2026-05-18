@@ -104,11 +104,11 @@ export function StatsCard({ stat, index = 0 }: { stat: Stat; index?: number }) {
         </div>
       </div>
 
-      <div className="mt-4">
-        <p className="text-xs font-medium text-white/55 tracking-tight">
+      <div className="mt-4 min-w-0">
+        <p className="truncate text-xs font-medium text-white/55 tracking-tight">
           {stat.title}
         </p>
-        <p className="mt-1 font-display text-2xl font-bold tracking-tight text-white">
+        <p className="mt-1 truncate font-display text-lg font-bold tracking-tight text-white sm:text-xl xl:text-2xl">
           {stat.value}
         </p>
       </div>

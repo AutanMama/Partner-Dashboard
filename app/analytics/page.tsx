@@ -78,7 +78,7 @@ export default function AnalyticsPage() {
           </div>
         </Card>
 
-        <Card className="col-span-12 xl:col-span-7">
+        <Card className="col-span-12 overflow-hidden xl:col-span-7">
           <CardHeader
             title="Cohort Retention"
             subtitle="Client retention by registration month"

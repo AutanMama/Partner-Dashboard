@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 :root {
   color-scheme: dark;
@@ -10,8 +10,8 @@
 
 html,
 body {
-  background: #05070d;
-  color: #e6e9f2;
+  background: #050505;
+  color: #ffffff;
   font-feature-settings: "cv11", "ss01", "ss03";
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -22,48 +22,79 @@ body {
   border-color: rgba(255, 255, 255, 0.06);
 }
 
-/* Background gradient field */
-.bg-app {
-  background:
-    radial-gradient(1100px 600px at 0% -10%, rgba(38, 103, 255, 0.18), transparent 60%),
-    radial-gradient(900px 600px at 100% 0%, rgba(16, 185, 129, 0.12), transparent 60%),
-    radial-gradient(800px 600px at 50% 110%, rgba(38, 103, 255, 0.1), transparent 60%),
-    #05070d;
-}
-
-/* Glassmorphism card */
-.glass {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.045) 0%,
-    rgba(255, 255, 255, 0.015) 100%
-  );
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+/* Card / panel surface */
+.panel {
+  background: #0e0e0e;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
-    0 24px 60px -28px rgba(0, 0, 0, 0.7);
+  border-radius: 16px;
+}
+.panel-elevated {
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
 }
 
-.glass-hover {
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s ease,
-    border-color 0.35s ease;
+/* Pill button (group-by, filters) */
+.pill {
+  background: #141414;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.78);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
 }
-.glass-hover:hover {
-  transform: translateY(-2px);
-  border-color: rgba(38, 103, 255, 0.35);
-  box-shadow:
-    0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
-    0 30px 70px -28px rgba(38, 103, 255, 0.35);
+.pill:hover {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+.pill-active {
+  background: #e11d2a;
+  border-color: #e11d2a;
+  color: #ffffff;
+}
+
+/* Tab underline indicator */
+.tab-active {
+  color: #ffffff;
+}
+.tab-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: #e11d2a;
+  border-radius: 999px;
+}
+
+/* Inputs */
+.field {
+  background: #0e0e0e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  color: #ffffff;
+  height: 44px;
+  padding: 0 14px;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.field::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.field:focus {
+  border-color: #e11d2a;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
-  height: 10px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
@@ -76,7 +107,27 @@ body {
   background: rgba(255, 255, 255, 0.16);
 }
 
-/* Skeleton shimmer */
+/* Hide scrollbar on horizontal pill rows */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Active nav indicator */
+.nav-active {
+  background: rgba(225, 29, 42, 0.12);
+  border: 1px solid rgba(225, 29, 42, 0.3);
+}
+
+/* Subtle row hover */
+.row-hover:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* Skeleton */
 .skeleton {
   background: linear-gradient(
     90deg,
@@ -88,46 +139,31 @@ body {
   animation: shimmer 2.4s linear infinite;
   border-radius: 10px;
 }
-
-/* Subtle dotted grid background */
-.dot-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 22px 22px;
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
-/* Active nav indicator */
-.nav-active {
-  background: linear-gradient(
-    135deg,
-    rgba(38, 103, 255, 0.18) 0%,
-    rgba(16, 185, 129, 0.06) 100%
-  );
-  border: 1px solid rgba(38, 103, 255, 0.3);
-  box-shadow: 0 0 30px -12px rgba(38, 103, 255, 0.55);
+/* Focus rings */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #e11d2a;
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
-/* Text gradients */
-.text-gradient-brand {
-  background: linear-gradient(135deg, #ffffff 0%, #83b4ff 50%, #34d399 120%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Hide arrows */
+/* Hide number arrows */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-button,
-a {
-  outline: none;
-}
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid #4d8bff;
-  outline-offset: 2px;
-  border-radius: 8px;
+/* Safe-area padding for bottom nav (iOS) */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }

@@ -34,22 +34,22 @@ const accentMap: Record<
   { bg: string; text: string; line: string }
 > = {
   brand: {
-    bg: "bg-brand-500/10",
-    text: "text-brand-300",
-    line: "#4d8bff",
+    bg: "bg-brand-500/12",
+    text: "text-brand-500",
+    line: "#e11d2a",
   },
   emerald: {
-    bg: "bg-emerald-500/10",
-    text: "text-emerald-300",
-    line: "#34d399",
+    bg: "bg-accent-green/12",
+    text: "text-accent-green",
+    line: "#19c37d",
   },
   violet: {
-    bg: "bg-violet-500/10",
-    text: "text-violet-300",
+    bg: "bg-white/[0.06]",
+    text: "text-white/80",
     line: "#a78bfa",
   },
   amber: {
-    bg: "bg-amber-500/10",
+    bg: "bg-amber-500/12",
     text: "text-amber-300",
     line: "#fbbf24",
   },
@@ -62,25 +62,15 @@ export function StatsCard({ stat, index = 0 }: { stat: Stat; index?: number }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="glass glass-hover group relative overflow-hidden rounded-2xl p-5"
+      transition={{ duration: 0.3, delay: index * 0.04 }}
+      className="panel overflow-hidden p-4 transition-colors hover:border-white/15"
     >
-      <div
-        className={cn(
-          "pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full blur-3xl opacity-50 transition-opacity group-hover:opacity-80",
-          stat.accent === "brand" && "bg-brand-500/30",
-          stat.accent === "emerald" && "bg-emerald-500/25",
-          stat.accent === "violet" && "bg-violet-500/25",
-          stat.accent === "amber" && "bg-amber-500/25",
-        )}
-      />
-
       <div className="flex items-start justify-between">
         <div
           className={cn(
-            "grid h-10 w-10 place-items-center rounded-xl border border-white/[0.06]",
+            "grid h-9 w-9 place-items-center rounded-lg",
             accent.bg,
           )}
         >
@@ -88,10 +78,10 @@ export function StatsCard({ stat, index = 0 }: { stat: Stat; index?: number }) {
         </div>
         <div
           className={cn(
-            "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium",
+            "inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold",
             positive
-              ? "border-emerald-400/25 bg-emerald-500/10 text-emerald-300"
-              : "border-rose-400/25 bg-rose-500/10 text-rose-300",
+              ? "bg-accent-green/12 text-accent-green"
+              : "bg-brand-500/12 text-brand-400",
           )}
         >
           {positive ? (
@@ -104,22 +94,18 @@ export function StatsCard({ stat, index = 0 }: { stat: Stat; index?: number }) {
         </div>
       </div>
 
-      <div className="mt-4 min-w-0">
-        <p className="truncate text-xs font-medium text-white/55 tracking-tight">
+      <div className="mt-3 min-w-0">
+        <p className="truncate text-[11px] font-medium uppercase tracking-wider text-white/45">
           {stat.title}
         </p>
-        <p className="mt-1 truncate font-display text-lg font-bold tracking-tight text-white sm:text-xl xl:text-2xl">
+        <p className="mt-1 truncate text-lg font-bold tracking-tight text-white sm:text-xl xl:text-2xl">
           {stat.value}
         </p>
       </div>
 
-      <div className="mt-4 -mx-1">
-        <Sparkline data={stat.spark} color={accent.line} height={44} />
+      <div className="mt-3 -mx-1">
+        <Sparkline data={stat.spark} color={accent.line} height={40} />
       </div>
-
-      <p className="mt-2 text-[10px] text-white/40">
-        vs. last period · 30-day trend
-      </p>
     </motion.div>
   );
 }

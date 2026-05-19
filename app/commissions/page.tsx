@@ -98,7 +98,7 @@ export default function CommissionsPage() {
                 >
                   <Icon className="h-4 w-4" />
                 </div>
-                <Badge tone="emerald" dot>
+                <Badge tone="green" dot>
                   {c.delta}
                 </Badge>
               </div>
@@ -121,7 +121,7 @@ export default function CommissionsPage() {
           <CardHeader
             title="Commission Growth"
             subtitle="Cumulative commission earnings by month"
-            right={<Badge tone="emerald" dot>2026</Badge>}
+            right={<Badge tone="green" dot>2026</Badge>}
           />
           <div className="h-[300px] w-full">
             <ResponsiveContainer width="100%" height="100%">

@@ -60,7 +60,7 @@ export default function SettingsPage() {
                   <Icon
                     className={cn(
                       "h-4 w-4",
-                      isActive ? "text-brand-300" : "text-white/45",
+                      isActive ? "text-brand-400" : "text-white/45",
                     )}
                   />
                   {s.label}
@@ -111,11 +111,11 @@ function ProfileForm() {
         subtitle="Information shown across your partner workspace"
       />
       <div className="flex items-center gap-4">
-        <div className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-brand text-xl font-bold text-white shadow-glow">
+        <div className="grid h-16 w-16 place-items-center rounded-2xl bg-brand-500 text-xl font-bold text-white shadow-red">
           RA
         </div>
         <div className="flex flex-col gap-1">
-          <Badge tone="emerald" dot>
+          <Badge tone="green" dot>
             Verified Partner · Tier 1
           </Badge>
           <p className="text-xs text-white/45">JPG, PNG · up to 4MB</p>
@@ -290,7 +290,7 @@ function Toggle({ defaultOn = false }: { defaultOn?: boolean }) {
       onClick={() => setOn((v) => !v)}
       className={cn(
         "relative h-6 w-11 rounded-full transition-colors",
-        on ? "bg-gradient-brand" : "bg-white/[0.08]",
+        on ? "bg-brand-500" : "bg-white/[0.08]",
       )}
     >
       <span

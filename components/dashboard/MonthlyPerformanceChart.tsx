@@ -11,7 +11,6 @@ import {
   Tooltip,
   XAxis,
   YAxis,
-  Legend,
 } from "recharts";
 import { ChartTooltip } from "./ChartTooltip";
 
@@ -23,36 +22,36 @@ export function MonthlyPerformanceChart() {
         subtitle="Deposits, withdrawals & commission across 2026"
         right={
           <div className="flex items-center gap-2">
-            <Badge tone="brand" dot>
+            <Badge tone="red" dot>
               Deposits
             </Badge>
-            <Badge tone="violet" dot>
+            <Badge tone="slate" dot>
               Withdrawals
             </Badge>
-            <Badge tone="emerald" dot>
+            <Badge tone="green" dot>
               Commission
             </Badge>
           </div>
         }
       />
-      <div className="h-[320px] w-full">
+      <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={monthlyPerformance}
-            margin={{ top: 8, right: 16, left: 0, bottom: 0 }}
+            margin={{ top: 8, right: 12, left: 0, bottom: 0 }}
           >
             <defs>
               <linearGradient id="grad-deposits" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#4d8bff" stopOpacity={0.5} />
-                <stop offset="100%" stopColor="#4d8bff" stopOpacity={0} />
+                <stop offset="0%" stopColor="#e11d2a" stopOpacity={0.55} />
+                <stop offset="100%" stopColor="#e11d2a" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="grad-withdrawals" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#a78bfa" stopOpacity={0.45} />
-                <stop offset="100%" stopColor="#a78bfa" stopOpacity={0} />
+                <stop offset="0%" stopColor="#9ca3af" stopOpacity={0.4} />
+                <stop offset="100%" stopColor="#9ca3af" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="grad-commission" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#34d399" stopOpacity={0.5} />
-                <stop offset="100%" stopColor="#34d399" stopOpacity={0} />
+                <stop offset="0%" stopColor="#19c37d" stopOpacity={0.5} />
+                <stop offset="100%" stopColor="#19c37d" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
@@ -68,9 +67,7 @@ export function MonthlyPerformanceChart() {
               tick={{ fontSize: 11 }}
               axisLine={false}
               tickLine={false}
-              tickFormatter={(v) =>
-                `$${(v / 1000).toFixed(0)}K`
-              }
+              tickFormatter={(v) => `$${(v / 1000).toFixed(0)}K`}
               width={48}
             />
             <Tooltip
@@ -80,21 +77,21 @@ export function MonthlyPerformanceChart() {
             <Area
               type="monotone"
               dataKey="deposits"
-              stroke="#4d8bff"
+              stroke="#e11d2a"
               strokeWidth={2.4}
               fill="url(#grad-deposits)"
             />
             <Area
               type="monotone"
               dataKey="withdrawals"
-              stroke="#a78bfa"
-              strokeWidth={2.4}
+              stroke="#9ca3af"
+              strokeWidth={2.2}
               fill="url(#grad-withdrawals)"
             />
             <Area
               type="monotone"
               dataKey="commission"
-              stroke="#34d399"
+              stroke="#19c37d"
               strokeWidth={2.4}
               fill="url(#grad-commission)"
             />

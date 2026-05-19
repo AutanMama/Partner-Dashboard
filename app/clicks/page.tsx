@@ -100,7 +100,7 @@ export default function ClicksPage() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge tone="emerald" dot>
+          <Badge tone="green" dot>
             Active
           </Badge>
           <Button variant="secondary" size="sm">
@@ -122,7 +122,7 @@ export default function ClicksPage() {
                 >
                   <Icon className="h-4 w-4" />
                 </div>
-                <Badge tone="emerald" dot>
+                <Badge tone="green" dot>
                   {s.delta}
                 </Badge>
               </div>

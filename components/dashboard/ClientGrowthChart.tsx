@@ -39,16 +39,16 @@ export function ClientGrowthChart() {
         title="Client Growth"
         subtitle="New clients vs trading accounts"
         right={
-          <div className="flex items-center gap-1 rounded-lg border border-white/[0.06] bg-white/[0.03] p-1">
+          <div className="flex items-center gap-1 rounded-full border border-white/[0.08] p-1">
             {(["Daily", "Monthly", "Yearly"] as View[]).map((v) => (
               <button
                 key={v}
                 onClick={() => setView(v)}
                 className={cn(
-                  "rounded-md px-2 py-1 text-[11px] font-medium transition",
+                  "rounded-full px-2.5 py-1 text-[11px] font-semibold transition",
                   view === v
-                    ? "bg-white/10 text-white"
-                    : "text-white/50 hover:text-white",
+                    ? "bg-brand-500 text-white"
+                    : "text-white/55 hover:text-white",
                 )}
               >
                 {v}
@@ -57,11 +57,11 @@ export function ClientGrowthChart() {
           </div>
         }
       />
-      <div className="h-[320px] w-full">
+      <div className="h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart
             data={data}
-            margin={{ top: 8, right: 16, left: 0, bottom: 0 }}
+            margin={{ top: 8, right: 12, left: 0, bottom: 0 }}
           >
             <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
             <XAxis
@@ -82,18 +82,18 @@ export function ClientGrowthChart() {
             <Line
               type="monotone"
               dataKey="clients"
-              stroke="#4d8bff"
+              stroke="#e11d2a"
               strokeWidth={2.4}
               dot={false}
-              activeDot={{ r: 4, fill: "#4d8bff" }}
+              activeDot={{ r: 4, fill: "#e11d2a" }}
             />
             <Line
               type="monotone"
               dataKey="accounts"
-              stroke="#34d399"
+              stroke="#19c37d"
               strokeWidth={2.4}
               dot={false}
-              activeDot={{ r: 4, fill: "#34d399" }}
+              activeDot={{ r: 4, fill: "#19c37d" }}
             />
           </LineChart>
         </ResponsiveContainer>

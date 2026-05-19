@@ -21,22 +21,18 @@ export function TrafficChart() {
       <CardHeader
         title="Traffic & Clicks"
         subtitle="Referral clicks vs conversion"
-        right={
-          <Badge tone="brand" dot>
-            4.8% avg CVR
-          </Badge>
-        }
+        right={<Badge tone="red" dot>4.8% avg CVR</Badge>}
       />
-      <div className="h-[300px] w-full">
+      <div className="h-[280px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             data={trafficClicks}
-            margin={{ top: 8, right: 16, left: 0, bottom: 0 }}
+            margin={{ top: 8, right: 12, left: 0, bottom: 0 }}
           >
             <defs>
               <linearGradient id="grad-clicks" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#34d399" stopOpacity={1} />
-                <stop offset="100%" stopColor="#047857" stopOpacity={0.3} />
+                <stop offset="0%" stopColor="#19c37d" stopOpacity={1} />
+                <stop offset="100%" stopColor="#15a06a" stopOpacity={0.4} />
               </linearGradient>
             </defs>
             <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
@@ -76,9 +72,9 @@ export function TrafficChart() {
               yAxisId="right"
               type="monotone"
               dataKey="conversion"
-              stroke="#fbbf24"
+              stroke="#e11d2a"
               strokeWidth={2.4}
-              dot={{ r: 3, fill: "#fbbf24" }}
+              dot={{ r: 3, fill: "#e11d2a" }}
             />
           </ComposedChart>
         </ResponsiveContainer>

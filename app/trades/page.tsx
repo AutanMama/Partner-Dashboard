@@ -69,7 +69,7 @@ export default function TradesPage() {
         title="Trades"
         description="Live trading activity from clients under your partner code. P/L attribution updated in real time."
       >
-        <Badge tone="emerald" dot>
+        <Badge tone="green" dot>
           Net P/L: {totalPL >= 0 ? "+" : "-"}
           {formatCurrency(Math.abs(totalPL), { maximumFractionDigits: 2 })}
         </Badge>
@@ -108,7 +108,7 @@ export default function TradesPage() {
         <CardHeader
           title="Notional Volume (USD)"
           subtitle="Total notional traded by referred accounts"
-          right={<Badge tone="brand" dot>2026</Badge>}
+          right={<Badge tone="red" dot>2026</Badge>}
         />
         <div className="h-[280px] w-full">
           <ResponsiveContainer width="100%" height="100%">

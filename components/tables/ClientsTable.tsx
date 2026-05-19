@@ -17,11 +17,11 @@ import { cn, formatCurrency } from "@/lib/utils";
 
 const statusTone: Record<
   ClientStatus,
-  "emerald" | "amber" | "rose" | "slate"
+  "green" | "amber" | "red" | "slate"
 > = {
-  Active: "emerald",
+  Active: "green",
   Pending: "amber",
-  Suspended: "rose",
+  Suspended: "red",
   Inactive: "slate",
 };
 
@@ -85,7 +85,7 @@ export function ClientsTable({
               setPage(1);
             }}
             placeholder="Search clients…"
-            className="h-9 w-full rounded-xl border border-white/[0.06] bg-white/[0.03] pl-9 pr-3 text-sm text-white placeholder:text-white/35 outline-none transition focus:border-brand-400/40"
+            className="field pl-9 h-10"
           />
         </div>
         <div className="flex items-center gap-1 rounded-xl border border-white/[0.06] bg-white/[0.03] p-1">
@@ -133,7 +133,7 @@ export function ClientsTable({
               >
                 <td className="px-5 py-3">
                   <div className="flex items-center gap-3">
-                    <div className="grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-brand-500/30 to-emerald-500/20 text-xs font-bold text-white">
+                    <div className="grid h-9 w-9 place-items-center rounded-full bg-brand-500/20 text-xs font-bold text-white">
                       {c.name
                         .split(" ")
                         .map((p) => p[0])
@@ -157,7 +157,7 @@ export function ClientsTable({
                   <Badge
                     tone={
                       c.trading === "Active"
-                        ? "emerald"
+                        ? "green"
                         : c.trading === "Idle"
                           ? "slate"
                           : "amber"
@@ -171,7 +171,7 @@ export function ClientsTable({
                   {formatCurrency(c.deposit)}
                 </td>
                 <td className="px-3 py-3">
-                  <Badge tone="brand">{c.account}</Badge>
+                  <Badge tone="red">{c.account}</Badge>
                 </td>
                 <td className="px-3 py-3">
                   <Badge tone={statusTone[c.status]} dot>
@@ -215,7 +215,7 @@ export function ClientsTable({
           <button
             disabled={safePage <= 1}
             onClick={() => setPage((p) => Math.max(1, p - 1))}
-            className="grid h-8 w-8 place-items-center rounded-lg border border-white/[0.06] text-white/60 transition hover:border-brand-400/30 hover:text-white disabled:opacity-40"
+            className="grid h-8 w-8 place-items-center rounded-lg border border-white/[0.06] text-white/60 transition hover:border-brand-500/40 hover:text-white disabled:opacity-40"
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
@@ -226,7 +226,7 @@ export function ClientsTable({
               className={cn(
                 "h-8 min-w-8 rounded-lg border px-2 text-xs font-medium transition",
                 safePage === i + 1
-                  ? "border-brand-400/50 bg-brand-500/15 text-white"
+                  ? "border-brand-500/50 bg-brand-500/15 text-white"
                   : "border-white/[0.06] text-white/55 hover:text-white",
               )}
             >
@@ -236,7 +236,7 @@ export function ClientsTable({
           <button
             disabled={safePage >= pages}
             onClick={() => setPage((p) => Math.min(pages, p + 1))}
-            className="grid h-8 w-8 place-items-center rounded-lg border border-white/[0.06] text-white/60 transition hover:border-brand-400/30 hover:text-white disabled:opacity-40"
+            className="grid h-8 w-8 place-items-center rounded-lg border border-white/[0.06] text-white/60 transition hover:border-brand-500/40 hover:text-white disabled:opacity-40"
           >
             <ChevronRight className="h-4 w-4" />
           </button>

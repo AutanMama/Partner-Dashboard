@@ -14,9 +14,9 @@ import {
 import { trades, type Trade, type TradeStatus } from "@/lib/data";
 import { cn, formatCurrency } from "@/lib/utils";
 
-const statusTone: Record<TradeStatus, "emerald" | "brand" | "slate"> = {
-  Open: "brand",
-  Closed: "emerald",
+const statusTone: Record<TradeStatus, "green" | "red" | "slate"> = {
+  Open: "red",
+  Closed: "green",
   Cancelled: "slate",
 };
 
@@ -72,7 +72,7 @@ export function TradesTable({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search by instrument or trade ID…"
-            className="h-9 w-full rounded-xl border border-white/[0.06] bg-white/[0.03] pl-9 pr-3 text-sm text-white placeholder:text-white/35 outline-none transition focus:border-brand-400/40"
+            className="field pl-9 h-10"
           />
         </div>
         <div className="flex items-center gap-1 rounded-xl border border-white/[0.06] bg-white/[0.03] p-1">
@@ -127,14 +127,14 @@ export function TradesTable({
                     {t.lot.toFixed(2)}
                   </td>
                   <td className="px-3 py-3">
-                    <Badge tone={t.side === "Buy" ? "emerald" : "rose"} dot>
+                    <Badge tone={t.side === "Buy" ? "green" : "red"} dot>
                       {t.side}
                     </Badge>
                   </td>
                   <td
                     className={cn(
                       "px-3 py-3 font-semibold",
-                      positive ? "text-emerald-300" : "text-rose-300",
+                      positive ? "text-accent-green" : "text-brand-400",
                     )}
                   >
                     <span className="inline-flex items-center gap-1">

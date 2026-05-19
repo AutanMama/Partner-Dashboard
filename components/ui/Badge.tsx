@@ -1,25 +1,21 @@
 import { cn } from "@/lib/utils";
 
-type Tone =
-  | "emerald"
-  | "brand"
-  | "amber"
-  | "rose"
-  | "violet"
-  | "slate";
+type Tone = "red" | "green" | "amber" | "slate" | "blue";
 
 const toneMap: Record<Tone, string> = {
-  emerald:
-    "bg-emerald-500/12 text-emerald-300 border-emerald-400/25",
-  brand:
-    "bg-brand-500/12 text-brand-300 border-brand-400/25",
-  amber:
-    "bg-amber-500/12 text-amber-300 border-amber-400/25",
-  rose: "bg-rose-500/12 text-rose-300 border-rose-400/25",
-  violet:
-    "bg-violet-500/12 text-violet-300 border-violet-400/25",
-  slate:
-    "bg-white/[0.04] text-white/70 border-white/10",
+  red: "bg-brand-500/12 text-brand-400 border-brand-500/30",
+  green: "bg-accent-green/12 text-accent-green border-accent-green/30",
+  amber: "bg-amber-500/12 text-amber-300 border-amber-400/30",
+  blue: "bg-sky-500/12 text-sky-300 border-sky-400/30",
+  slate: "bg-white/[0.04] text-white/70 border-white/10",
+};
+
+const dotMap: Record<Tone, string> = {
+  red: "bg-brand-500",
+  green: "bg-accent-green",
+  amber: "bg-amber-400",
+  blue: "bg-sky-400",
+  slate: "bg-white/60",
 };
 
 export function Badge({
@@ -42,17 +38,7 @@ export function Badge({
       )}
     >
       {dot ? (
-        <span
-          className={cn(
-            "h-1.5 w-1.5 rounded-full",
-            tone === "emerald" && "bg-emerald-400",
-            tone === "brand" && "bg-brand-400",
-            tone === "amber" && "bg-amber-400",
-            tone === "rose" && "bg-rose-400",
-            tone === "violet" && "bg-violet-400",
-            tone === "slate" && "bg-white/60",
-          )}
-        />
+        <span className={cn("h-1.5 w-1.5 rounded-full", dotMap[tone])} />
       ) : null}
       {children}
     </span>

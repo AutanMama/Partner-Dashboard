@@ -17,7 +17,7 @@ export function ChartTooltip({
 }) {
   if (!active || !payload || payload.length === 0) return null;
   return (
-    <div className="rounded-xl border border-white/10 bg-ink-900/95 px-3 py-2.5 shadow-glass backdrop-blur-xl">
+    <div className="rounded-lg border border-white/10 bg-panel-elevated px-3 py-2.5 shadow-soft">
       <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
         {label}
       </p>

@@ -3,7 +3,6 @@
 import {
   Bell,
   ChevronDown,
-  Menu,
   Search,
   Wallet,
   LogOut,
@@ -14,7 +13,8 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
+export function Topbar({ onMenuClick: _onMenuClick }: { onMenuClick: () => void }) {
+  void _onMenuClick;
   const [profileOpen, setProfileOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -33,29 +33,24 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
   return (
     <header
       ref={ref}
-      className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-white/[0.06] bg-ink-950/70 px-4 backdrop-blur-xl sm:px-6"
+      className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-white/[0.06] bg-canvas/95 px-4 backdrop-blur-xl sm:h-16 sm:px-6"
     >
-      <button
-        onClick={onMenuClick}
-        className="grid h-9 w-9 place-items-center rounded-lg text-white/70 hover:bg-white/[0.06] hover:text-white lg:hidden"
-      >
-        <Menu className="h-5 w-5" />
-      </button>
-
       <div className="relative hidden flex-1 max-w-md md:block">
         <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" />
         <input
           placeholder="Search clients, trades, reports…"
-          className="h-10 w-full rounded-xl border border-white/[0.06] bg-white/[0.03] pl-10 pr-16 text-sm text-white placeholder:text-white/35 transition focus:border-brand-400/40 focus:bg-white/[0.05]"
+          className="field pl-10"
         />
-        <kbd className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-white/10 bg-white/[0.04] px-1.5 py-0.5 text-[10px] font-medium text-white/50">
-          ⌘K
-        </kbd>
+      </div>
+
+      {/* Mobile title slot */}
+      <div className="md:hidden flex-1 truncate text-base font-semibold tracking-tight text-white">
+        Apex<span className="text-brand-500">IB</span>
       </div>
 
       <div className="ml-auto flex items-center gap-2">
-        <div className="hidden items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-1.5 text-xs sm:flex">
-          <div className="grid h-7 w-7 place-items-center rounded-lg bg-emerald-500/12 text-emerald-300">
+        <div className="hidden items-center gap-2 rounded-lg border border-white/[0.06] bg-panel px-3 py-1.5 text-xs sm:flex">
+          <div className="grid h-7 w-7 place-items-center rounded-md bg-accent-green/15 text-accent-green">
             <Wallet className="h-3.5 w-3.5" />
           </div>
           <div className="leading-tight">
@@ -72,10 +67,10 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
               setNotifOpen((v) => !v);
               setProfileOpen(false);
             }}
-            className="relative grid h-10 w-10 place-items-center rounded-xl border border-white/[0.06] bg-white/[0.03] text-white/75 transition hover:border-brand-400/30 hover:text-white"
+            className="relative grid h-10 w-10 place-items-center rounded-lg border border-white/[0.06] bg-panel text-white/75 transition hover:text-white"
           >
             <Bell className="h-4 w-4" />
-            <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-brand-400 ring-2 ring-ink-950" />
+            <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-brand-500 ring-2 ring-canvas" />
           </button>
           <AnimatePresence>
             {notifOpen ? (
@@ -84,13 +79,13 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 6, scale: 0.97 }}
                 transition={{ duration: 0.18 }}
-                className="absolute right-0 top-12 w-80 origin-top-right rounded-2xl border border-white/[0.06] bg-ink-900/95 p-2 shadow-glass backdrop-blur-xl"
+                className="absolute right-0 top-12 w-80 origin-top-right rounded-xl border border-white/[0.06] bg-panel-elevated p-2 shadow-soft"
               >
                 <div className="flex items-center justify-between p-2.5">
                   <p className="text-xs font-semibold text-white">
                     Notifications
                   </p>
-                  <span className="rounded-full bg-brand-500/15 px-2 py-0.5 text-[10px] font-medium text-brand-300">
+                  <span className="rounded-full bg-brand-500/15 px-2 py-0.5 text-[10px] font-medium text-brand-400">
                     3 new
                   </span>
                 </div>
@@ -114,12 +109,10 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                   ].map((n, i) => (
                     <div
                       key={i}
-                      className="cursor-pointer rounded-xl px-3 py-2.5 transition hover:bg-white/[0.04]"
+                      className="cursor-pointer rounded-lg px-3 py-2.5 transition hover:bg-white/[0.04]"
                     >
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-white">
-                          {n.t}
-                        </p>
+                        <p className="text-sm font-medium text-white">{n.t}</p>
                         <span className="text-[10px] text-white/40">
                           {n.time}
                         </span>
@@ -139,9 +132,9 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
               setProfileOpen((v) => !v);
               setNotifOpen(false);
             }}
-            className="flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.03] px-2 py-1.5 transition hover:border-brand-400/30"
+            className="flex items-center gap-2.5 rounded-lg border border-white/[0.06] bg-panel px-2 py-1.5 transition hover:border-white/15"
           >
-            <div className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-brand text-xs font-bold text-white">
+            <div className="grid h-7 w-7 place-items-center rounded-md bg-brand-500 text-xs font-bold text-white">
               RA
             </div>
             <div className="hidden text-left leading-tight sm:block">
@@ -157,10 +150,10 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 6, scale: 0.97 }}
                 transition={{ duration: 0.18 }}
-                className="absolute right-0 top-12 w-60 origin-top-right rounded-2xl border border-white/[0.06] bg-ink-900/95 p-2 shadow-glass backdrop-blur-xl"
+                className="absolute right-0 top-12 w-60 origin-top-right rounded-xl border border-white/[0.06] bg-panel-elevated p-2 shadow-soft"
               >
-                <div className="flex items-center gap-3 rounded-xl bg-white/[0.03] p-3">
-                  <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-brand text-sm font-bold text-white">
+                <div className="flex items-center gap-3 rounded-lg bg-white/[0.03] p-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-md bg-brand-500 text-sm font-bold text-white">
                     RA
                   </div>
                   <div className="leading-tight">
@@ -182,7 +175,7 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                   return (
                     <button
                       key={i}
-                      className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-white/75 transition hover:bg-white/[0.04] hover:text-white"
+                      className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-white/75 transition hover:bg-white/[0.04] hover:text-white"
                     >
                       <Ic className="h-3.5 w-3.5 text-white/45" />
                       {it.l}
@@ -190,7 +183,7 @@ export function Topbar({ onMenuClick }: { onMenuClick: () => void }) {
                   );
                 })}
                 <div className="my-1 h-px bg-white/[0.06]" />
-                <button className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-rose-300/90 transition hover:bg-rose-500/[0.08]">
+                <button className="flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm text-brand-400 transition hover:bg-brand-500/[0.08]">
                   <LogOut className="h-3.5 w-3.5" />
                   Sign out
                 </button>

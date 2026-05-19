@@ -22,11 +22,11 @@ const typeIcon = {
 } as const;
 
 const typeAccent = {
-  client: "bg-brand-500/12 text-brand-300",
-  deposit: "bg-emerald-500/12 text-emerald-300",
-  trade: "bg-violet-500/12 text-violet-300",
+  client: "bg-brand-500/12 text-brand-500",
+  deposit: "bg-accent-green/12 text-accent-green",
+  trade: "bg-white/[0.06] text-white/80",
   withdrawal: "bg-amber-500/12 text-amber-300",
-  commission: "bg-emerald-500/12 text-emerald-300",
+  commission: "bg-accent-green/12 text-accent-green",
 } as const;
 
 export function RecentActivity() {
@@ -36,25 +36,25 @@ export function RecentActivity() {
         title="Recent Activity"
         subtitle="Live partner network events"
         right={
-          <button className="inline-flex items-center gap-1 text-xs font-medium text-brand-300 hover:text-brand-200">
+          <button className="inline-flex items-center gap-1 text-xs font-medium text-brand-400 hover:text-brand-400">
             View all <ArrowRight className="h-3 w-3" />
           </button>
         }
       />
-      <ul className="flex flex-col gap-1.5">
+      <ul className="flex flex-col gap-1">
         {recentActivity.map((a, i) => {
           const Icon = typeIcon[a.type];
           return (
             <motion.li
               key={a.id}
-              initial={{ opacity: 0, x: -8 }}
+              initial={{ opacity: 0, x: -6 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.04, duration: 0.35 }}
-              className="group flex items-center gap-3 rounded-xl px-2 py-2.5 transition hover:bg-white/[0.03]"
+              transition={{ delay: i * 0.03, duration: 0.3 }}
+              className="group flex items-center gap-3 rounded-lg px-2 py-2.5 transition hover:bg-white/[0.025]"
             >
               <div
                 className={cn(
-                  "grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-white/[0.06]",
+                  "grid h-9 w-9 shrink-0 place-items-center rounded-lg",
                   typeAccent[a.type],
                 )}
               >
@@ -70,8 +70,8 @@ export function RecentActivity() {
                       className={cn(
                         "text-xs font-semibold",
                         a.amount.startsWith("+")
-                          ? "text-emerald-300"
-                          : "text-rose-300",
+                          ? "text-accent-green"
+                          : "text-brand-400",
                       )}
                     >
                       {a.amount}

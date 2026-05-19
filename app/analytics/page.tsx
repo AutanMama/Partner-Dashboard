@@ -50,7 +50,7 @@ export default function AnalyticsPage() {
           <CardHeader
             title="Partner Quality Score"
             subtitle="Composite performance across 6 KPIs"
-            right={<Badge tone="emerald" dot>A+ rated</Badge>}
+            right={<Badge tone="green" dot>A+ rated</Badge>}
           />
           <div className="h-[320px] w-full">
             <ResponsiveContainer width="100%" height="100%">

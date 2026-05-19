@@ -6,6 +6,7 @@ import { Sidebar } from "./Sidebar";
 import { Topbar } from "./Topbar";
 import { AnimatePresence, motion } from "framer-motion";
 
+
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();

@@ -231,7 +231,7 @@ export default function CommissionsPage() {
                   </td>
                   <td className="px-5 py-3">
                     <Badge
-                      tone={p.status === "Paid" ? "emerald" : "amber"}
+                      tone={p.status === "Paid" ? "green" : "amber"}
                       dot
                     >
                       {p.status}

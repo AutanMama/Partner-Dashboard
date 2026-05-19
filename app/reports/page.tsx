@@ -55,23 +55,21 @@ type SortDir = "asc" | "desc";
 export default function ReportsPage() {
   const [tab, setTab] = useState<ReportTab>("overall");
   const [group, setGroup] = useState<GroupBy>("Year");
-  const [period, setPeriod] = useState<ActivityPeriod>("This month");
+  const [period, setPeriod] = useState<ActivityPeriod>("All Time");
   const [query, setQuery] = useState("");
   const [sortKey, setSortKey] = useState<SortKey>("label");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<string | null>("2026");
 
   const [activityOpen, setActivityOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [showTotals, setShowTotals] = useState(true);
 
-  // Empty state mimics screenshot #1 when "This month" + "Year" combo
-  const showEmpty = period === "This month" && group === "Year";
-
   const baseRows = useMemo(
-    () => (showEmpty ? [] : getReportRows(tab, group)),
-    [tab, group, showEmpty],
+    () => getReportRows(tab, group, period),
+    [tab, group, period],
   );
+  const showEmpty = baseRows.length === 0;
 
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();

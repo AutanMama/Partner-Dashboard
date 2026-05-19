@@ -34,49 +34,48 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-canvas">
-      <div className="flex min-h-screen">
-        {/* Desktop sidebar */}
-        <div className="sticky top-0 hidden h-screen lg:block">
-          <Sidebar />
-        </div>
+      {/* Desktop sidebar — fixed to viewport so it never scrolls with the page */}
+      <div className="fixed inset-y-0 left-0 z-30 hidden w-[252px] overflow-y-auto lg:block">
+        <Sidebar />
+      </div>
 
-        {/* Mobile drawer */}
-        <AnimatePresence>
-          {mobileOpen ? (
-            <motion.div
-              key="mobile-backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 z-40 bg-black/65 backdrop-blur-sm lg:hidden"
-            />
-          ) : null}
-        </AnimatePresence>
-        <AnimatePresence>
-          {mobileOpen ? (
-            <motion.div
-              key="mobile-drawer"
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-y-0 left-0 z-50 lg:hidden"
-            >
-              <MobileMenu onClose={() => setMobileOpen(false)} />
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {mobileOpen ? (
+          <motion.div
+            key="mobile-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setMobileOpen(false)}
+            className="fixed inset-0 z-40 bg-black/65 backdrop-blur-sm lg:hidden"
+          />
+        ) : null}
+      </AnimatePresence>
+      <AnimatePresence>
+        {mobileOpen ? (
+          <motion.div
+            key="mobile-drawer"
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "-100%" }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-y-0 left-0 z-50 lg:hidden"
+          >
+            <MobileMenu onClose={() => setMobileOpen(false)} />
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
-        <div className="relative flex min-w-0 flex-1 flex-col overflow-x-hidden">
-          <Topbar onMenuClick={() => setMobileOpen(true)} />
-          <main className="relative w-full flex-1 overflow-x-hidden px-4 pb-28 pt-5 sm:px-6 lg:px-8 lg:pb-10">
-            <div className="mx-auto flex w-full max-w-[1480px] min-w-0 flex-col gap-5">
-              {children}
-            </div>
-          </main>
-        </div>
+      {/* Main column — offset on desktop to clear the fixed sidebar */}
+      <div className="relative flex min-h-screen min-w-0 flex-col overflow-x-hidden lg:pl-[252px]">
+        <Topbar onMenuClick={() => setMobileOpen(true)} />
+        <main className="relative w-full flex-1 overflow-x-hidden px-4 pb-28 pt-5 sm:px-6 lg:px-8 lg:pb-10">
+          <div className="mx-auto flex w-full max-w-[1480px] min-w-0 flex-col gap-5">
+            {children}
+          </div>
+        </main>
       </div>
 
       {/* Mobile bottom tab bar */}

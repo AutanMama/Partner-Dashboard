@@ -87,7 +87,6 @@ export function Sidebar({
             <Link
               key={item.href}
               href={item.href}
-              onClick={onClose}
               className={cn(
                 "group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium",
                 "text-white/65 transition-colors hover:text-white",

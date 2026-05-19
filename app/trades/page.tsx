@@ -6,6 +6,8 @@ import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Sparkline } from "@/components/ui/Sparkline";
 import { TradesTable } from "@/components/tables/TradesTable";
+import { OrderFlow } from "@/components/markets/OrderFlow";
+import { LiveTicker } from "@/components/markets/LiveTicker";
 import {
   Download,
   Activity,
@@ -37,7 +39,7 @@ export default function TradesPage() {
       title: "Total Trades",
       value: formatNumber(trades.length),
       icon: Activity,
-      color: "#4d8bff",
+      color: "#e11d2a",
       spark: [4, 8, 12, 10, 16, 18, 22, 26, 24, 30, 36, 42],
     },
     {
@@ -51,20 +53,22 @@ export default function TradesPage() {
       title: "Winning Trades",
       value: formatNumber(winning),
       icon: TrendingUp,
-      color: "#34d399",
+      color: "#19c37d",
       spark: [8, 12, 10, 14, 18, 22, 24, 28, 30, 34, 36, 40],
     },
     {
       title: "Losing Trades",
       value: formatNumber(losing),
       icon: TrendingDown,
-      color: "#fb7185",
+      color: "#e11d2a",
       spark: [12, 10, 14, 12, 16, 14, 18, 16, 14, 18, 16, 14],
     },
   ];
 
   return (
     <>
+      <LiveTicker />
+
       <PageHeader
         title="Trades"
         description="Live trading activity from clients under your partner code. P/L attribution updated in real time."
@@ -79,21 +83,21 @@ export default function TradesPage() {
         </Button>
       </PageHeader>
 
-      <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <section className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {summary.map((s, i) => {
           const Icon = s.icon;
           return (
-            <Card key={i}>
+            <Card key={i} className="overflow-hidden">
               <div
-                className="grid h-10 w-10 place-items-center rounded-xl border border-white/[0.06]"
+                className="grid h-9 w-9 place-items-center rounded-lg"
                 style={{ background: `${s.color}1f`, color: s.color }}
               >
                 <Icon className="h-4 w-4" />
               </div>
-              <p className="mt-4 text-xs font-medium text-white/55">
+              <p className="mt-3 text-[11px] uppercase tracking-wider text-white/45">
                 {s.title}
               </p>
-              <p className="mt-1 font-display text-2xl font-bold text-white">
+              <p className="mt-1 text-xl font-bold text-white sm:text-2xl">
                 {s.value}
               </p>
               <div className="mt-3 -mx-1">
@@ -104,49 +108,53 @@ export default function TradesPage() {
         })}
       </section>
 
-      <Card>
-        <CardHeader
-          title="Notional Volume (USD)"
-          subtitle="Total notional traded by referred accounts"
-          right={<Badge tone="red" dot>2026</Badge>}
-        />
-        <div className="h-[280px] w-full">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={volumeAnalytics}
-              margin={{ top: 8, right: 16, left: 0, bottom: 0 }}
-            >
-              <defs>
-                <linearGradient id="grad-trade" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#34d399" stopOpacity={1} />
-                  <stop offset="100%" stopColor="#047857" stopOpacity={0.3} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
-              <XAxis
-                dataKey="month"
-                stroke="rgba(255,255,255,0.4)"
-                tick={{ fontSize: 11 }}
-                axisLine={false}
-                tickLine={false}
-              />
-              <YAxis
-                stroke="rgba(255,255,255,0.4)"
-                tick={{ fontSize: 11 }}
-                axisLine={false}
-                tickLine={false}
-                tickFormatter={(v) => `$${(v / 1_000_000).toFixed(0)}M`}
-                width={48}
-              />
-              <Tooltip
-                content={<ChartTooltip prefix="$" />}
-                cursor={{ fill: "rgba(255,255,255,0.03)" }}
-              />
-              <Bar dataKey="usd" fill="url(#grad-trade)" radius={[8, 8, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </Card>
+      <section className="grid grid-cols-12 gap-3">
+        <Card className="col-span-12 xl:col-span-7">
+          <CardHeader
+            title="Notional Volume (USD)"
+            subtitle="Total notional traded by referred accounts"
+            right={<Badge tone="red" dot>2026</Badge>}
+          />
+          <div className="h-[280px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={volumeAnalytics}
+                margin={{ top: 8, right: 12, left: 0, bottom: 0 }}
+              >
+                <defs>
+                  <linearGradient id="grad-trade" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#19c37d" stopOpacity={1} />
+                    <stop offset="100%" stopColor="#15a06a" stopOpacity={0.3} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid stroke="rgba(255,255,255,0.05)" vertical={false} />
+                <XAxis
+                  dataKey="month"
+                  stroke="rgba(255,255,255,0.4)"
+                  tick={{ fontSize: 11 }}
+                  axisLine={false}
+                  tickLine={false}
+                />
+                <YAxis
+                  stroke="rgba(255,255,255,0.4)"
+                  tick={{ fontSize: 11 }}
+                  axisLine={false}
+                  tickLine={false}
+                  tickFormatter={(v) => `$${(v / 1_000_000).toFixed(0)}M`}
+                  width={48}
+                />
+                <Tooltip
+                  content={<ChartTooltip prefix="$" />}
+                  cursor={{ fill: "rgba(255,255,255,0.03)" }}
+                />
+                <Bar dataKey="usd" fill="url(#grad-trade)" radius={[6, 6, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </Card>
+
+        <OrderFlow />
+      </section>
 
       <TradesTable rows={18} />
     </>

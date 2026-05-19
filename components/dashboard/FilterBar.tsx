@@ -1,18 +1,32 @@
 "use client";
 
-import { useState } from "react";
 import { Calendar, RefreshCcw } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import type { Granularity } from "@/lib/granularData";
 
-type Granularity = "Day" | "Month" | "Year";
+type FilterBarProps = {
+  granularity: Granularity;
+  onGranularityChange: (g: Granularity) => void;
+  year: string;
+  onYearChange: (y: string) => void;
+  date: string;
+  onDateChange: (d: string) => void;
+  onReset?: () => void;
+  onApply?: () => void;
+};
 
-export function FilterBar() {
-  const [granularity, setGranularity] = useState<Granularity>("Month");
-  const [year, setYear] = useState("2026");
-  const [date, setDate] = useState("2026-05-18");
-
+export function FilterBar({
+  granularity,
+  onGranularityChange,
+  year,
+  onYearChange,
+  date,
+  onDateChange,
+  onReset,
+  onApply,
+}: FilterBarProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 6 }}
@@ -28,7 +42,7 @@ export function FilterBar() {
           {(["Day", "Month", "Year"] as Granularity[]).map((g) => (
             <button
               key={g}
-              onClick={() => setGranularity(g)}
+              onClick={() => onGranularityChange(g)}
               className={cn(
                 "rounded-full px-3.5 py-1.5 text-xs font-semibold transition-colors",
                 granularity === g
@@ -48,14 +62,14 @@ export function FilterBar() {
           <input
             type="date"
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={(e) => onDateChange(e.target.value)}
             className="field pl-9 w-44"
           />
         </label>
 
         <select
           value={year}
-          onChange={(e) => setYear(e.target.value)}
+          onChange={(e) => onYearChange(e.target.value)}
           className="field w-28"
         >
           {[2023, 2024, 2025, 2026, 2027].map((y) => (
@@ -65,11 +79,11 @@ export function FilterBar() {
           ))}
         </select>
 
-        <Button variant="secondary" size="md">
+        <Button variant="secondary" size="md" onClick={onReset}>
           <RefreshCcw className="h-3.5 w-3.5" />
           Reset
         </Button>
-        <Button variant="primary" size="md">
+        <Button variant="primary" size="md" onClick={onApply}>
           Apply Filter
         </Button>
       </div>

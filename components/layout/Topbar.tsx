@@ -13,11 +13,24 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+function useLiveClock() {
+  const [now, setNow] = useState<string>("--:--:--");
+  useEffect(() => {
+    setNow(new Date().toLocaleTimeString("en-GB", { hour12: false }));
+    const id = setInterval(() => {
+      setNow(new Date().toLocaleTimeString("en-GB", { hour12: false }));
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return now;
+}
+
 export function Topbar({ onMenuClick: _onMenuClick }: { onMenuClick: () => void }) {
   void _onMenuClick;
   const [profileOpen, setProfileOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const clock = useLiveClock();
 
   useEffect(() => {
     function onClick(e: MouseEvent) {
@@ -49,6 +62,19 @@ export function Topbar({ onMenuClick: _onMenuClick }: { onMenuClick: () => void 
       </div>
 
       <div className="ml-auto flex items-center gap-2">
+        <div className="hidden items-center gap-2 rounded-lg border border-white/[0.06] bg-panel px-3 py-1.5 text-xs lg:flex">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-green/70" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-green" />
+          </span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-accent-green">
+            Live
+          </span>
+          <span className="font-mono text-[11px] tabular-nums text-white/70">
+            {clock} UTC
+          </span>
+        </div>
+
         <div className="hidden items-center gap-2 rounded-lg border border-white/[0.06] bg-panel px-3 py-1.5 text-xs sm:flex">
           <div className="grid h-7 w-7 place-items-center rounded-md bg-accent-green/15 text-accent-green">
             <Wallet className="h-3.5 w-3.5" />

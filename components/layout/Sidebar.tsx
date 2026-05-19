@@ -69,15 +69,15 @@ export function Sidebar() {
   return (
     <aside className="flex h-full w-[252px] flex-col gap-2 border-r border-white/[0.06] bg-canvas px-4 py-5">
       <Link href="/" className="flex items-center gap-2.5 px-1">
-        <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand-500 text-white shadow-red">
-          <span className="text-sm font-extrabold">A</span>
+        <div className="grid h-9 w-9 place-items-center rounded-lg bg-brand-500 text-white shadow-red">
+          <span className="text-[11px] font-extrabold tracking-tight">HF</span>
         </div>
         <div className="leading-tight">
           <p className="text-base font-bold text-white tracking-tight">
-            Apex<span className="text-brand-500">IB</span>
+            HF<span className="text-brand-500">M</span>
           </p>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-white/40">
-            Partner Suite
+          <p className="text-[10px] uppercase tracking-[0.18em] text-white/45">
+            HF Markets · Partners
           </p>
         </div>
       </Link>
@@ -149,14 +149,14 @@ export function MobileMenu({ onClose }: { onClose: () => void }) {
     <aside className="flex h-full w-[88vw] max-w-[360px] flex-col bg-canvas">
       <div className="flex items-start justify-between gap-3 px-5 pt-5">
         <div className="flex items-start gap-3">
-          <div className="grid h-12 w-12 place-items-center rounded-full bg-white/[0.06] text-white/40">
-            <User className="h-6 w-6" />
+          <div className="grid h-12 w-12 place-items-center rounded-full bg-brand-500 text-sm font-bold text-white">
+            MA
           </div>
           <div className="leading-tight">
             <p className="text-base font-semibold text-white">
-              Hi Rico Adams
+              Hi Mahmud Abba Bissalah
             </p>
-            <p className="mt-0.5 text-xs text-white/55">r*****@gmail.com</p>
+            <p className="mt-0.5 text-xs text-white/55">m*****@gmail.com</p>
             <button className="mt-1 inline-flex items-center gap-1 text-xs text-white/65 hover:text-white">
               Wallet ID: 65071014
               <Copy className="h-3 w-3" />

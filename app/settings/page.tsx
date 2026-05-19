@@ -112,7 +112,7 @@ function ProfileForm() {
       />
       <div className="flex items-center gap-4">
         <div className="grid h-16 w-16 place-items-center rounded-2xl bg-brand-500 text-xl font-bold text-white shadow-red">
-          RA
+          MA
         </div>
         <div className="flex flex-col gap-1">
           <Badge tone="green" dot>
@@ -132,22 +132,22 @@ function ProfileForm() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Field label="Full name">
-          <input defaultValue="Rico Adams" className={inputCls} />
+          <input defaultValue="Mahmud Abba Bissalah" className={inputCls} />
         </Field>
         <Field label="Partner code">
-          <input defaultValue="APX-RA-00OC" className={inputCls} />
+          <input defaultValue="HFM-MAB-30511545" className={inputCls} />
         </Field>
         <Field label="Email">
-          <input defaultValue="ricodan00oc@gmail.com" className={inputCls} />
+          <input defaultValue="m*****@gmail.com" className={inputCls} />
         </Field>
         <Field label="Phone">
-          <input defaultValue="+1 415 555 0148" className={inputCls} />
+          <input defaultValue="+234 803 555 0148" className={inputCls} />
         </Field>
         <Field label="Company">
-          <input defaultValue="Apex Capital Partners LLC" className={inputCls} />
+          <input defaultValue="HF Markets Introducing Broker" className={inputCls} />
         </Field>
         <Field label="Website">
-          <input defaultValue="https://apex-capital.io" className={inputCls} />
+          <input defaultValue="https://www.hfm.com" className={inputCls} />
         </Field>
       </div>
     </div>

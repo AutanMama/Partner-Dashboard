@@ -3,9 +3,9 @@ import "./globals.css";
 import { DashboardShell } from "@/components/layout/DashboardShell";
 
 export const metadata: Metadata = {
-  title: "ApexIB — Partner Dashboard",
+  title: "HFM — Partner Dashboard",
   description:
-    "Modern, real-time analytics suite for forex Introducing Brokers, affiliates and partner programs.",
+    "HF Markets partner dashboard — real-time analytics for Introducing Brokers, affiliates and sub-partners.",
 };
 
 export default function RootLayout({

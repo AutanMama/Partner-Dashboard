@@ -57,8 +57,18 @@ export function Topbar({ onMenuClick: _onMenuClick }: { onMenuClick: () => void 
       </div>
 
       {/* Mobile title slot */}
-      <div className="md:hidden flex-1 truncate text-base font-semibold tracking-tight text-white">
-        Apex<span className="text-brand-500">IB</span>
+      <div className="md:hidden flex flex-1 items-center gap-2 truncate">
+        <div className="grid h-7 w-7 place-items-center rounded-md bg-brand-500 text-[10px] font-extrabold text-white">
+          HF
+        </div>
+        <div className="leading-tight">
+          <p className="text-sm font-bold tracking-tight text-white">
+            HF<span className="text-brand-500">M</span>
+          </p>
+          <p className="text-[9px] uppercase tracking-[0.16em] text-white/45">
+            HF Markets
+          </p>
+        </div>
       </div>
 
       <div className="ml-auto flex items-center gap-2">
@@ -161,10 +171,10 @@ export function Topbar({ onMenuClick: _onMenuClick }: { onMenuClick: () => void 
             className="flex items-center gap-2.5 rounded-lg border border-white/[0.06] bg-panel px-2 py-1.5 transition hover:border-white/15"
           >
             <div className="grid h-7 w-7 place-items-center rounded-md bg-brand-500 text-xs font-bold text-white">
-              RA
+              MA
             </div>
             <div className="hidden text-left leading-tight sm:block">
-              <p className="text-xs font-semibold text-white">Rico Adams</p>
+              <p className="text-xs font-semibold text-white">Mahmud A. Bissalah</p>
               <p className="text-[10px] text-white/45">Tier 1 Partner</p>
             </div>
             <ChevronDown className="h-3.5 w-3.5 text-white/40" />
@@ -180,14 +190,14 @@ export function Topbar({ onMenuClick: _onMenuClick }: { onMenuClick: () => void 
               >
                 <div className="flex items-center gap-3 rounded-lg bg-white/[0.03] p-3">
                   <div className="grid h-9 w-9 place-items-center rounded-md bg-brand-500 text-sm font-bold text-white">
-                    RA
+                    MA
                   </div>
                   <div className="leading-tight">
                     <p className="text-sm font-semibold text-white">
-                      Rico Adams
+                      Mahmud Abba Bissalah
                     </p>
                     <p className="text-[10px] text-white/45">
-                      ricodan00oc@gmail.com
+                      m*****@gmail.com
                     </p>
                   </div>
                 </div>

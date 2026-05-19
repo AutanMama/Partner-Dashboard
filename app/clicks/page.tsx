@@ -96,7 +96,7 @@ export default function ClicksPage() {
             Your unique referral link
           </p>
           <p className="mt-1 truncate font-mono text-sm text-white">
-            https://broker.apexib.com/partner/ricodan-00oc?ref=tier1
+            https://www.hfm.com/sv/en/?refid=30511545
           </p>
         </div>
         <div className="flex items-center gap-2">

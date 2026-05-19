@@ -119,8 +119,31 @@ function monthRows(tab: ReportTab): ReportRow[] {
 }
 
 function yearRows(tab: ReportTab): ReportRow[] {
-  // Matches the screenshot — one row 2026, but with real data
-  return [rowFromBase(tab, "2026", "2026", 91_767_900, 16_038)];
+  // 2026 — exact numbers from the partner's program statement
+  const volume = 91_767_900;
+  const commission = 16_038;
+
+  if (tab === "overall") {
+    return [
+      {
+        key: "2026",
+        label: "2026",
+        volume,
+        commission,
+        details: [
+          { label: "Trading Account Registrations", value: "2,577", tone: "red" },
+          { label: "Wallet Registrations", value: "2,883" },
+          { label: "Trades", value: "3,399", tone: "red" },
+          { label: "Internal Transfers In", value: "$11,289" },
+          { label: "Net Internals", value: "$22,766" },
+          { label: "Internal transfers out", value: "$18,777" },
+          { label: "Volume (Million USD)", value: "91.77" },
+        ],
+      },
+    ];
+  }
+
+  return [rowFromBase(tab, "2026", "2026", volume, commission)];
 }
 
 function countryRows(tab: ReportTab): ReportRow[] {
